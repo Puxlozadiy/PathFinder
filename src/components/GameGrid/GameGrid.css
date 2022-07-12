@@ -1,6 +1,9 @@
 #game{
     display: grid;
+    font-size: 12px;
 }
+
+
 
 .gridUnit{
     width: 30px;
@@ -9,6 +12,7 @@
     border: 1px solid black;
     cursor: pointer;
 }
+
 
 .default{
     background-color: white;
