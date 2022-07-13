@@ -7,13 +7,20 @@ function App() {
   const gameGrid = useRef()
 
   const pausePathFinding = () => {
-    console.log(gameGrid)
     gameGrid.current.playOrPause()
+  }
+
+  const stopPathFinding = () => {
+    gameGrid.current.stop()
+  }
+
+  const replayPathFinding = () => {
+    gameGrid.current.replay()
   }
 
   return (
     <Fragment>
-      <GameSettings onPauseClick={pausePathFinding} />
+      <GameSettings onPauseClick={pausePathFinding} onStopClick={stopPathFinding} onReplayClick={replayPathFinding}/>
       <GameGrid ref={gameGrid}/>
     </Fragment>
   );

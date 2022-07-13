@@ -10,19 +10,26 @@ const GameSettings = (props) => {
     const playOrPauseHandler = () => {
         props.onPauseClick()
     }
+
+    const stopHandler = () => {
+        props.onStopClick()
+    }
     
+    const replayHandler = (event) => {
+        props.onReplayClick()
+    }
 
     return (
         <header>
             <div className="play-pause-stop-replay">
                 <div id="play-pause" onClick={playOrPauseHandler}>
-                    <img src={playPause} alt="" style={{height: '35px'}}></img>
+                    <img src={playPause} alt="" style={{height: '35px'}} draggable="false"></img>
                 </div>
-                <div id="stop">
-                    <img src={stop} alt="" style={{height: '35px'}}></img>
+                <div id="stop" onClick={stopHandler}>
+                    <img src={stop} alt="" style={{height: '35px'}} draggable="false"></img>
                 </div>
-                <div id="replay">
-                    <img src={replay} alt="" style={{height: '35px'}}></img>
+                <div id="replay" onClick={replayHandler}>
+                    <img src={replay} alt="" style={{height: '35px', width: '35px', pointerEvents:'none'}} draggable="false"></img>
                 </div>
             </div>
         </header>
