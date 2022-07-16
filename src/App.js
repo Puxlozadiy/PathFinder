@@ -18,9 +18,13 @@ function App() {
     gameGrid.current.replay()
   }
 
+  const clearGrid = () => {
+    gameGrid.current.clear()
+  }
+
   return (
     <Fragment>
-      <GameSettings onPauseClick={pausePathFinding} onStopClick={stopPathFinding} onReplayClick={replayPathFinding}/>
+      <GameSettings onPauseClick={pausePathFinding} onStopClick={stopPathFinding} onReplayClick={replayPathFinding} onClearClick={clearGrid}/>
       <GameGrid ref={gameGrid}/>
     </Fragment>
   );

@@ -19,6 +19,10 @@ const GameSettings = (props) => {
         props.onReplayClick()
     }
 
+    const clearHandler = (event) => {
+        props.onClearClick()
+    }
+
     return (
         <header>
             <div className="play-pause-stop-replay">
@@ -31,6 +35,9 @@ const GameSettings = (props) => {
                 <div id="replay" onClick={replayHandler}>
                     <img src={replay} alt="" style={{height: '35px', width: '35px', pointerEvents:'none'}} draggable="false"></img>
                 </div>
+            </div>
+            <div className="grid-control">
+                <div id="clear-grid" onClick={clearHandler}>Clear grid</div>
             </div>
         </header>
     )

@@ -17,7 +17,8 @@ const GameGrid = forwardRef((props, ref) => {
         return {
             playOrPause: playOrPausePathFinding,
             stop: stopPathFinding,
-            replay: replayPathFinding
+            replay: replayPathFinding,
+            clear: clearGrid
         }
     })
 
@@ -44,10 +45,6 @@ const GameGrid = forwardRef((props, ref) => {
     const createPaths = (start) => {
         let isPathFinded = false
         const pathCreator = setInterval(() => {
-            /* if(isGamePaused) {
-                clearInterval(pathCreator)
-                return
-            } */
             if(localStorage.getItem('isGamePaused') === 'false'){
                 let temponaryPathList = [...pathList]
                 let looplimit = pathList.length
@@ -142,6 +139,7 @@ const GameGrid = forwardRef((props, ref) => {
                 }
             }
         }
+        
     }
 
     const checkPaths = (paths) => {
@@ -179,8 +177,6 @@ const GameGrid = forwardRef((props, ref) => {
     const replayPathFinding = () => {
         console.log('replay1')
         localStorage.setItem('isGamePaused', 'true') // to stop previous interval
-        console.log(localStorage.getItem('isGamePaused'))
-        //document.getElementById()
         setTimeout(() => {
             let xStart = parseInt(startPoint[0])
             let yStart = parseInt(startPoint[1])
@@ -188,10 +184,24 @@ const GameGrid = forwardRef((props, ref) => {
             pathList = []
             pathList.push([[xStart, yStart]])
             localStorage.setItem('isGamePaused', 'false')
-            console.log(localStorage.getItem('isGamePaused'))
             createPaths(startPoint) 
             console.log('replay2') 
-        }, 300)
+        }, 300) // waiting for all previous intervals stopped
+    }
+
+    const clearGrid = () => {
+        for(let x = 1; x < (gridRows+1); x++){
+            for(let y = 1; y < (gridColumns+1); y++){
+                let pathPiece = document.getElementById(`${x}-${y}`)
+                pathPiece.classList.remove('passedPath')
+                pathPiece.classList.remove('wall')
+                pathPiece.classList.remove('start')
+                pathPiece.classList.remove('end')
+                pathPiece.classList.add('default')
+            }
+        }
+        setStartPoint(0)
+        localStorage.setItem('isGamePaused', 'true')
     }
 
     return (
